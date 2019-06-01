@@ -40,7 +40,8 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="array", nullable=false)
+     * @Assert\NotBlank
      */
     private $roles = [];
 
