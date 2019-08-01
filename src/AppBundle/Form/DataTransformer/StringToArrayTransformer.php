@@ -14,7 +14,7 @@ class StringToArrayTransformer implements DataTransformerInterface
     }
 
     /**
-     * @param  string $string
+     * @param string $string
      *
      * @return array
      */

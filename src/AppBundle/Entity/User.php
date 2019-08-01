@@ -22,7 +22,7 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @ORM\Column(type="string",     length=25, unique=true)
      * @Assert\NotBlank(message="Vous devez saisir un nom d'utilisateur.")
      */
     private $username;
@@ -33,9 +33,9 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=60, unique=true)
+     * @ORM\Column(type="string",     length=60, unique=true)
      * @Assert\NotBlank(message="Vous devez saisir une adresse email.")
-     * @Assert\Email(message="Le format de l'adresse n'est pas correcte.")
+     * @Assert\Email(message="Le      format de l'adresse n'est pas correcte.")
      */
     private $email;
 
@@ -50,58 +50,116 @@ class User implements UserInterface
         $this->roles = ["ROLE_ADMIN"];
     }
 
-    public function getId()
+    /**
+     * Return user id
+     *
+     * @return int|null
+     */
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUsername()
+    /**
+     * Return username
+     *
+     * @return string|null
+     */
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    public function setUsername($username)
+    /**
+     * @param string $username
+     *
+     * @return User
+     */
+    public function setUsername(string $username): User
     {
         $this->username = $username;
+
+        return $this;
     }
 
-    public function getSalt()
+    /**
+     * Return salt
+     *
+     * @return string|null
+     */
+    public function getSalt(): ?string
     {
         return null;
     }
 
-    public function getPassword()
+    /**
+     * Return user password
+     *
+     * @return string|null
+     */
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword($password)
+    /**
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword(string $password): User
     {
         $this->password = $password;
+
+        return $this;
     }
 
-    public function getEmail()
+    /**
+     * Return user email
+     *
+     * @return string|null
+     */
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail($email)
+    /**
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail(string $email): User
     {
         $this->email = $email;
-    }
 
-    public function getRoles()
-    {
-        //return array('ROLE_USER');
-        return $this->roles;
-    }
-
-    public function setRoles(array $roles)
-    {
-        $this->roles = $roles;
         return $this;
     }
 
+    /**
+     * Return user roles
+     *
+     * @return array|null
+     */
+    public function getRoles(): ?array
+    {
+        return $this->roles;
+    }
+
+    /**
+     * @param  array $roles
+     * @return User
+     */
+    public function setRoles(array $roles): User
+    {
+        $this->roles = $roles;
+        
+        return $this;
+    }
+
+    /**
+     * @return void
+     */
     public function eraseCredentials()
     {
     }

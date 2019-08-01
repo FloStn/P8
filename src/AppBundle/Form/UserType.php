@@ -18,22 +18,28 @@ class UserType extends AbstractType
         $transformer = new StringToArrayTransformer();
         $builder
             ->add('username', TextType::class, ['label' => "Nom d'utilisateur"])
-            ->add('password', RepeatedType::class, [
+            ->add(
+                'password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les deux mots de passe doivent correspondre.',
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Tapez le mot de passe à nouveau'],
-            ])
+                ]
+            )
             ->add('email', EmailType::class, ['label' => 'Adresse email'])
-            ->add($builder->create('roles', ChoiceType::class, [
-                'label' => 'Rôle',
-                'multiple' => false,
-                'choices' => [
+            ->add(
+                $builder->create(
+                    'roles', ChoiceType::class, [
+                    'label' => 'Rôle',
+                    'multiple' => false,
+                    'choices' => [
                     'Rôle Utilisateur' => 'ROLE_USER',
                     'Rôle Administrateur' => 'ROLE_ADMIN',
-                ]
-              ])->addModelTransformer($transformer));
+                    ]
+                    ]
+                )->addModelTransformer($transformer)
+            );
         ;
     }
 }

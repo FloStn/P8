@@ -4,10 +4,12 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use DateTime;
 
 /**
- * @ORM\Entity
- * @ORM\Table
+ * @ORM\Table("task")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaskRepository")
+ * @ORM\EntityListeners({"AppBundle\Service\TaskListener"})
  */
 class Task
 {
@@ -48,62 +50,127 @@ class Task
 
     public function __construct()
     {
-        $this->createdAt = new \Datetime();
+        $this->createdAt = new DateTime();
         $this->isDone = false;
     }
 
-    public function getId()
+    /**
+     * Return task id
+     *
+     * @return int|null
+     */
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCreatedAt()
+    /**
+     * Return task creation date
+     *
+     * @return DateTime|null
+     */
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt($createdAt)
+    /**
+     * @param DateTime|null $createdAt
+     *
+     * @return Task
+     */
+    public function setCreatedAt(DateTime $createdAt): Task
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 
-    public function getTitle()
+    /**
+     * Return task title
+     *
+     * @return string|null
+     */
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function setTitle($title)
+    /**
+     * @param string $title
+     *
+     * @return Task
+     */
+    public function setTitle(string $title): Task
     {
         $this->title = $title;
+
+        return $this;
     }
 
-    public function getContent()
+    /**
+     * Return content task
+     *
+     * @return string|null
+     */
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
-    public function setContent($content)
+    /**
+     * @param string $content
+     *
+     * @return Task
+     */
+    public function setContent(string $content): Task
     {
         $this->content = $content;
+
+        return $this;
     }
 
-    public function isDone()
+    /**
+     * Return true if is done, else false
+     *
+     * @return boolean
+     */
+    public function isDone(): bool
     {
         return $this->isDone;
     }
 
-    public function toggle($flag)
+    /**
+     * @param boolean $flag
+     *
+     * @return Task
+     */
+    public function toggle(bool $flag): Task
     {
         $this->isDone = $flag;
+
+        return $this;
     }
 
-    public function getAuthor()
+    /**
+     * Return task author
+     *
+     * @return User
+     */
+    public function getAuthor(): User
     {
         return $this->author;
     }
 
-    public function setAuthor(User $user)
+    /**
+     * @param User $user
+     *
+     * @return Task
+     */
+    public function setAuthor(User $user): Task
     {
         $this->author = $user;
+
+        return $this;
     }
 }
