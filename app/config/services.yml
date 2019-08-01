@@ -7,5 +7,29 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-  AppBundle\Security\TaskVoter:
-    tags: ['security.voter']
+    _defaults:
+      autowire: true
+      autoconfigure: true
+      public: false
+
+    AppBundle\Security\TaskVoter:
+      tags: ['security.voter']
+
+    AppBundle\Controller\:
+      resource: '../../src/AppBundle/Controller'
+      tags: ['controller.service_arguments']
+
+    handler.user_form_handler:
+      class: AppBundle\Handler\Form\UserFormHandler
+
+    task_listener:
+      class: AppBundle\Service\TaskListener
+      arguments:
+        - "@snc_redis.doctrine"
+      tags:
+        - { name: doctrine.orm.entity_listener }    
+
+    #handler.user_form_handler:
+    #  class: AppBundle\Handler\Form\UserFormHandler
+    #  public: true
+    #  arguments: ["@doctrine.orm.default_entity_manager", "@security.user_password_encoder.generic"]

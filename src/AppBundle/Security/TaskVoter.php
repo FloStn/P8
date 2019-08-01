@@ -20,7 +20,6 @@ class TaskVoter extends Voter
         }
 
         if (!$subject instanceof Task) {
-            
             return false;
         }
 
@@ -35,16 +34,18 @@ class TaskVoter extends Voter
             return false;
         }
 
-        /** @var Task $task */
+        /**
+ * @var Task $task 
+*/
         $task = $subject;
 
         switch ($attribute) {
-            case self::VIEW:
-                return $this->canView($task, $user);
-            case self::EDIT:
-                return $this->canEdit($task, $user);
-            case self::DELETE:
-                return $this->canDelete($task, $user);
+        case self::VIEW:
+            return $this->canView($task, $user);
+        case self::EDIT:
+            return $this->canEdit($task, $user);
+        case self::DELETE:
+            return $this->canDelete($task, $user);
         }
 
         throw new \LogicException('This code should not be reached!');
@@ -61,7 +62,7 @@ class TaskVoter extends Voter
 
     private function canEdit(Task $task, User $user)
     {
-        return $user === $task->getOwner();
+        return $user === $task->getAuthor();
     }
 
     private function canDelete(Task $task, User $user)
@@ -72,9 +73,9 @@ class TaskVoter extends Voter
             foreach ($user->getRoles() as $role) {
                 if ($role == "ROLE_ADMIN") {
                     return true;
-                } else {
-                    return false;
                 }
+
+                return false;
             }
         }
 
