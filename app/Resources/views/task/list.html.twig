@@ -10,7 +10,7 @@
             <div class="thumbnail">
                 <div class="caption">
                     <h4 class="pull-right">
-                        {% if task.isDone %}<span class="glyphicon glyphicon-ok"></span>{% else %}<span class="glyphicon glyphicon-remove"></span>{% endif %}
+                        {% if task.done %}<span class="glyphicon glyphicon-ok"></span>{% else %}<span class="glyphicon glyphicon-remove"></span>{% endif %}
                     </h4>
                     <h4><a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a></h4>
                     <p>{{ task.content }}</p>
@@ -26,7 +26,7 @@
                 <div>
                     <form action="{{ path('task_toggle', {'id' : task.id }) }}">
                         <a class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#modalTaskToggle{{ task.id }}">
-                            {% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée{% endif %}
+                            {% if not task.done %}Marquer comme faite{% else %}Marquer non terminée{% endif %}
                         </a>
                         {% include 'task/modal/task_toggle.html.twig' %} 
                     </form>      

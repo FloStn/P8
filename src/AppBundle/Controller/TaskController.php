@@ -96,7 +96,7 @@ class TaskController extends Controller
      */
     public function toggleTaskAction(Task $task, EntityManagerInterface $entityManager)
     {
-        $task->toggle(!$task->isDone());
+        $task->setDone(!$task->isDone());
         $entityManager->flush();
 
         if ($task->isDone()) {

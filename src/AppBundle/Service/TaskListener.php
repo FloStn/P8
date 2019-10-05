@@ -14,17 +14,17 @@ class TaskListener
         $this->cacheDriver = $cacheDriver;
     }
 
-    public function postPersist(Task $task, LifecycleEventArgs $args)
+    public function postPersist()
     {
         $this->cacheDriver->expire('[tasks_all][1]', 0);
     }
 
-    public function postUpdate(Task $task, LifecycleEventArgs $args)
+    public function postUpdate()
     {
         $this->cacheDriver->expire('[tasks_all][1]', 0);
     }
 
-    public function postRemove(Task $task, LifecycleEventArgs $args)
+    public function postRemove()
     {
         $this->cacheDriver->expire('[tasks_all][1]', 0);
     }

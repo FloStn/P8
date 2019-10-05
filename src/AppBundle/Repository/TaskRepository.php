@@ -14,9 +14,7 @@ class TaskRepository extends EntityRepository
             ->orderBy('a.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->useResultCache(true)
-            ->setResultCacheLifetime(10)
-            ->setResultCacheId('tasks_all')
+            ->useResultCache(true, 10, 'tasks_all')
             ->getResult();
     }
 }

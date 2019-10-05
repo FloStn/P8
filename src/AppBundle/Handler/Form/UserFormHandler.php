@@ -29,9 +29,7 @@ class UserFormHandler
     public function createFormHandler(User $user, FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
-            $userData = $form->getData();
-            $password = $this->passwordEncoder->encodePassword($user, $userData->getPassword());
-            $user->setPassword($password);
+            $user->setPassword($this->passwordEncoder->encodePassword($user, $user->getPassword()));
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
@@ -53,9 +51,7 @@ class UserFormHandler
     public function editFormHandler(User $user, FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
-            $userData = $form->getData();
-            $password = $this->passwordEncoder->encodePassword($user, $userData->getPassword());
-            $user->setPassword($password);
+            $user->setPassword($this->passwordEncoder->encodePassword($user, $user->getPassword()));
             
             $this->entityManager->flush();
 

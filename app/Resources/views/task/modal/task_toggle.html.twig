@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Souhaitez-vous vraiment {% if not task.isDone %}marquer comme faite{% else %}marquer non terminée{% endif %} la tâche <b>{{ task.title }}</b> ?
+        Souhaitez-vous vraiment {% if not task.done %}marquer comme faite{% else %}marquer non terminée{% endif %} la tâche <b>{{ task.title }}</b> ?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>

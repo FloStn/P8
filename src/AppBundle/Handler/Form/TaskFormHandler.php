@@ -4,19 +4,16 @@ namespace AppBundle\Handler\Form;
 
 use AppBundle\Entity\Task;
 use AppBundle\Entity\User;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Form\FormInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 class TaskFormHandler
 {
     private $entityManager;
-    private $passwordEncoder;
 
-    public function __construct(EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
-        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
@@ -45,7 +42,6 @@ class TaskFormHandler
     /**
      * Manage submit edit form
      *
-     * @param Task          $task
      * @param FormInterface $form
      *
      * @return boolean
