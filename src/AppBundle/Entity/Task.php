@@ -40,7 +40,7 @@ class Task
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isDone;
+    private $done;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
@@ -51,7 +51,7 @@ class Task
     public function __construct()
     {
         $this->createdAt = new DateTime();
-        $this->isDone = false;
+        $this->done = false;
     }
 
     /**
@@ -75,7 +75,7 @@ class Task
     }
 
     /**
-     * @param DateTime|null $createdAt
+     * @param DateTime $createdAt
      *
      * @return Task
      */
@@ -137,7 +137,7 @@ class Task
      */
     public function isDone(): bool
     {
-        return $this->isDone;
+        return $this->done;
     }
 
     /**
@@ -145,9 +145,9 @@ class Task
      *
      * @return Task
      */
-    public function toggle(bool $flag): Task
+    public function setDone(bool $flag): Task
     {
-        $this->isDone = $flag;
+        $this->done = $flag;
 
         return $this;
     }
@@ -155,9 +155,9 @@ class Task
     /**
      * Return task author
      *
-     * @return User
+     * @return null|User
      */
-    public function getAuthor(): User
+    public function getAuthor(): ?User
     {
         return $this->author;
     }
