@@ -1,0 +1,14 @@
+parameters:
+    hash: '$2y$10$LtVGaCizd/vL1rXDfg9ezeJGdZmMlt/8fdM3IynromeDPad6sZ1Tm' # 12345678
+
+AppBundle\Entity\User:
+    admin:
+        username: 'admin'
+        password: <{hash}>
+        email: 'admin@test.com'
+        roles: ['ROLE_ADMIN']
+    user:
+        username: 'user'
+        password: <{hash}>
+        email: 'user@test.com'
+        roles: ['ROLE_USER']

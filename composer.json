@@ -45,7 +45,8 @@
         "phpmetrics/phpmetrics": "^2.4",
         "phpmd/phpmd": "^2.6",
         "phpstan/phpstan": "^0.11.12",
-        "friendsofphp/php-cs-fixer": "^2.15"
+        "friendsofphp/php-cs-fixer": "^2.15",
+        "hautelook/alice-bundle": "^2.5"
     },
     "scripts": {
         "symfony-scripts": [

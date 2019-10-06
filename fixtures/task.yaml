@@ -1,0 +1,37 @@
+AppBundle\Entity\Task:
+    task_1:
+        author: '@admin'
+        title: 'Nourrir le chien'
+        content: 'Penser à nourrir le chien !'
+    task_2:
+        author: '@admin'
+        title: 'Nourrir le chat'
+        content: 'Penser à nourrir le chat !'
+        done: true
+    task_3:
+        author: '@admin'
+        title: 'Nourrir le cheval'
+        content: 'Penser à nourrir le cheval !'
+        done: true
+    task_4:
+        author: '@admin'
+        title: "Nourrir le cochon d'inde"
+        content: "Penser à nourrir le cochon d'inde !"  
+    task_5:
+        author: '@user'
+        title: 'Nourrir le hamster'
+        content: 'Penser à nourrir le hamster !'
+    task_6:
+        author: '@user'
+        title: 'Nourrir le lapin'
+        content: 'Penser à nourrir le lapin !'
+        done: true
+    task_7:
+        author: '@user'
+        title: 'Nourrir la vache'
+        content: 'Penser à nourrir la vache !'
+        done: true
+    task_8:
+        author: '@user'
+        title: "Nourrir l'âne"
+        content: "Penser à nourrir l'âne !"
