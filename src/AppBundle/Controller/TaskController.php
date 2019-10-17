@@ -80,8 +80,8 @@ class TaskController extends Controller
         }
     
         return $this->render(
-                'task/edit.html.twig',
-                [
+            'task/edit.html.twig',
+            [
                 'form' => $form->createView(),
                 'task' => $task,
                 ]

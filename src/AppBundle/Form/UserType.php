@@ -13,7 +13,7 @@ use AppBundle\Form\DataTransformer\StringToArrayTransformer;
 
 class UserType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder)
     {
         $transformer = new StringToArrayTransformer();
         $builder
