@@ -68,22 +68,22 @@ class TaskController extends Controller
      */
     public function editAction(Task $task, Request $request, TaskFormHandler $taskFormHandler)
     {
-        $form = $this->createForm(TaskType::class, $task);
+            $form = $this->createForm(TaskType::class, $task);
 
-        $form->handleRequest($request);
-
-        if ($taskFormHandler->editFormHandler($form)) {
-            $this->addFlash('success', 'La tâche a bien été modifiée.');
-
-            return $this->redirectToRoute('task_list');
-        }
-
-        return $this->render(
-            'task/edit.html.twig', [
-            'form' => $form->createView(),
-            'task' => $task,
-            ]
-        );
+            $form->handleRequest($request);
+    
+            if ($taskFormHandler->editFormHandler($form)) {
+                $this->addFlash('success', 'La tâche a bien été modifiée.');
+    
+                return $this->redirectToRoute('task_list');
+            }
+    
+            return $this->render(
+                'task/edit.html.twig', [
+                'form' => $form->createView(),
+                'task' => $task,
+                ]
+            );
     }
 
     /**
