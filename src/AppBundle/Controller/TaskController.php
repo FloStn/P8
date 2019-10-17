@@ -27,7 +27,8 @@ class TaskController extends Controller
         $tasks = $repository->findByAuthorField($author);
 
         return $this->render(
-            'task/list.html.twig', [
+            'task/list.html.twig',
+            [
             'tasks' => $tasks,
             ]
         );
@@ -68,18 +69,19 @@ class TaskController extends Controller
      */
     public function editAction(Task $task, Request $request, TaskFormHandler $taskFormHandler)
     {
-            $form = $this->createForm(TaskType::class, $task);
+        $form = $this->createForm(TaskType::class, $task);
 
-            $form->handleRequest($request);
+        $form->handleRequest($request);
     
-            if ($taskFormHandler->editFormHandler($form)) {
-                $this->addFlash('success', 'La tâche a bien été modifiée.');
+        if ($taskFormHandler->editFormHandler($form)) {
+            $this->addFlash('success', 'La tâche a bien été modifiée.');
     
-                return $this->redirectToRoute('task_list');
-            }
+            return $this->redirectToRoute('task_list');
+        }
     
-            return $this->render(
-                'task/edit.html.twig', [
+        return $this->render(
+                'task/edit.html.twig',
+                [
                 'form' => $form->createView(),
                 'task' => $task,
                 ]
