@@ -3,12 +3,12 @@ parameters:
 
 AppBundle\Entity\User:
     admin:
-        username: 'admin'
+        username: 'JohnDoe'
         password: <{hash}>
         email: 'admin@test.com'
         roles: ['ROLE_ADMIN']
     user:
-        username: 'user'
+        username: 'JaneDoe'
         password: <{hash}>
         email: 'user@test.com'
         roles: ['ROLE_USER']

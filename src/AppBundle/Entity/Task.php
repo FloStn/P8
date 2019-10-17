@@ -28,12 +28,22 @@ class Task
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="Vous devez saisir un titre.")
+     * @Assert\Length(
+     *       min = 5,
+     *       max = 15,
+     *       minMessage = "Le titre doit être composé de 5 caractères minimum.",
+     *       maxMessage = "Le titre doit être composé de 15 caractères maximum.")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="Vous devez saisir du contenu.")
+     * @Assert\Length(
+     *       min = 10,
+     *       max = 100,
+     *       minMessage = "Le contenu doit être composé de 10 caractères minimum.",
+     *       maxMessage = "Le contenu doit être composé de 100 caractères maximum.")
      */
     private $content;
 

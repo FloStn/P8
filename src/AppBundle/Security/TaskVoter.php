@@ -34,7 +34,7 @@ class TaskVoter extends Voter
         }
 
         /**
-        * @var Task $task 
+        * @var Task $task
         */
         $task = $subject;
 

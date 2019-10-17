@@ -10,8 +10,8 @@ Feature: As a connected user, I must be able to access the task creation page.
     And I am on "/tasks/create"
     And I press "Ajouter"
     Then I should be on "/tasks/create"
-    And I should see "Vous devez indiquer un titre."
-    And I should see "Vous devez indiquer un contenu."
+    And I should see "Vous devez saisir un titre."
+    And I should see "Vous devez saisir du contenu."
 
   Scenario: [Fail] If I am connected and submit the form with only the task title, then I should stay on the task creation page and I should see an error message.
     Given I load a user in database
@@ -20,7 +20,7 @@ Feature: As a connected user, I must be able to access the task creation page.
     And I fill in "Le titre de la tâche" for "task_title"
     And I press "Ajouter"
     Then I should be on "/tasks/create"
-    And I should see "Vous devez indiquer un contenu."
+    And I should see "Vous devez saisir du contenu."
 
   Scenario: [Fail] If I am connected and submit the form with only the task content, then I should stay on the task creation page and I should see an error message.
     Given I load a user in database
@@ -29,7 +29,7 @@ Feature: As a connected user, I must be able to access the task creation page.
     And I fill in "Coucou je suis le contenu d'une tâche !" for "task_content"
     And I press "Ajouter"
     Then I should be on "/tasks/create"
-    And I should see "Vous devez indiquer un titre."
+    And I should see "Vous devez saisir un titre."
 
   Scenario: [Fail] If I am connected and submit the form without respecting the minimal validation constraint, then I should stay on the task creation page and I should see error messages.
     Given I load a user in database
@@ -69,8 +69,8 @@ Feature: As a connected user, I must be able to access the task creation page.
         | task_title | Titre de la tâche |
         | task_content | Coucou je suis le contenu d'une tâche ! |
     And I press "Ajouter"
-    Then I should be on "/tasks/create"
-    And I should see "La tâche a bien été créée !"
+    Then I should be on "/tasks"
+    And I should see "Superbe ! La tâche a bien été ajoutée."
 
   Scenario: [Success] If I am connected and click on the "Se déconnecter" link, then I should be redirected to the login page.
     Given I load a user in database

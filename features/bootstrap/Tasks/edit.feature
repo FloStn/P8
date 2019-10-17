@@ -21,8 +21,8 @@ Feature: As a connected user, I must be able to access the task edit page.
         | task_content |  |
     And I press "Modifier"
     Then I should be on "/tasks/1/edit"
-    And I should see "Vous devez indiquer un titre."
-    And I should see "Vous devez indiquer un contenu."
+    And I should see "Vous devez saisir un titre."
+    And I should see "Vous devez saisir du contenu."
 
   Scenario: [Fail] If I am connected and submit the form without respecting the validation constraints, then I should stay on the edit page and I should see error messages.
     Given I load a user in database

@@ -48,9 +48,11 @@ class FeatureContext extends MinkContext implements Context
     public function iLoadAUserInDatabase()
     {
         $this->user = new User();
-        $this->user->setUsername("JohnDoe");
-        $this->user->setEmail("johndoe@doe.com");
-        $this->user->setPassword($this->passwordEncoder->encodePassword($this->user, '12345678'));
+        $this->user->setUsername("JohnDoe")
+             ->setEmail('johndoe@doe.com')
+             ->setPassword($this->passwordEncoder->encodePassword($this->user, '12345678'))
+             ->setRoles(['ROLE_ADMIN']);
+        
 
         $this->entityManager->persist($this->user);
         $this->entityManager->flush();
