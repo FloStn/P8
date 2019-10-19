@@ -24,6 +24,11 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=25, unique=true)
      * @Assert\NotBlank(message="Vous devez saisir un nom d'utilisateur.")
+     * @Assert\Length(
+     *       min = 5,
+     *       max = 30,
+     *       minMessage = "Le nom d'utilisateur doit être composé de {{ limit }} caractères minimum.",
+     *       maxMessage = "Le nom d'utilisateur doit être composé de {{ limit }} caractères maximum.")
      */
     private $username;
 
@@ -36,12 +41,17 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=60, unique=true)
      * @Assert\NotBlank(message="Vous devez saisir une adresse email.")
      * @Assert\Email(message="Le format de l'adresse n'est pas correcte.")
+     * @Assert\Length(
+     *       min = 8,
+     *       max = 60,
+     *       minMessage = "L'email doit être composé de {{ limit }} caractères minimum.",
+     *       maxMessage = "L'email doit être composé de {{ limit }} caractères maximum.")
      */
     private $email;
 
     /**
      * @ORM\Column(type="array", nullable=false)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Vous devez définir un rôle.")
      */
     private $roles = [];
 

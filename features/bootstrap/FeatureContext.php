@@ -18,6 +18,7 @@ class FeatureContext extends MinkContext implements Context
     private $entityManager;
     private $passwordEncoder;
     private $user;
+    private $task;
     /**
      * Initializes context.
      *
@@ -63,18 +64,20 @@ class FeatureContext extends MinkContext implements Context
      */
     public function iLoadUsersInDatabase()
     {
-        $this->user1 = new User();
-        $this->user1->setUsername("JohnDoe");
-        $this->user1->setEmail("johndoe@doe.com");
-        $this->user1->setPassword($this->passwordEncoder->encodePassword($this->user1, '12345678'));
+        $this->user = new User();
+        $this->user->setUsername("JohnDoe")
+              ->setEmail("johndoe@doe.com")
+              ->setPassword($this->passwordEncoder->encodePassword($this->user, '12345678'))
+              ->setRoles(["ROLE_ADMIN"]);
 
-        $this->user2 = new User();
-        $this->user2->setUsername("JaneDoe");
-        $this->user2->setEmail("janedoe@doe.com");
-        $this->user2->setPassword($this->passwordEncoder->encodePassword($this->user2, '12345678'));
+        $user2 = new User();
+        $user2->setUsername("JaneDoe")
+              ->setEmail("janedoe@doe.com")
+              ->setPassword($this->passwordEncoder->encodePassword($user2, '12345678'))
+              ->setRoles(["ROLE_USER"]);
 
-        $this->entityManager->persist($this->user1);
-        $this->entityManager->persist($this->user2);
+        $this->entityManager->persist($this->user);
+        $this->entityManager->persist($user2);
         $this->entityManager->flush();
     }
 
@@ -83,9 +86,25 @@ class FeatureContext extends MinkContext implements Context
      */
     public function iLoadATaskInDatabase()
     {
-        $this->task = new Task();
-        $this->task->setTitle("Une tâche");
-        $this->task->setContent("Contenu de la tâche");
+        $this->task = new Task(); 
+        $this->task->setTitle("Une tâche")
+             ->setContent("Contenu de la tâche")
+             ->setAuthor($this->user);
+
+        $this->entityManager->persist($this->task);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @Given I load a performed task in database
+     */
+    public function iLoadAPerformedTaskInDatabase()
+    {
+        $this->task = new Task(); 
+        $this->task->setTitle("Une tâche")
+             ->setContent("Contenu de la tâche")
+             ->setAuthor($this->user)
+             ->setDone(true);
 
         $this->entityManager->persist($this->task);
         $this->entityManager->flush();
@@ -96,16 +115,18 @@ class FeatureContext extends MinkContext implements Context
      */
     public function iLoadTasksInDatabase()
     {
-        $this->task1 = new Task();
-        $this->task1->setTitle("Une tâche");
-        $this->task1->setContent("Contenu de la tâche 1 !");
+        $task1 = new Task();
+        $task1->setTitle("Une tâche")
+              ->setContent("Contenu de la tâche 1 !")
+              ->setAuthor($this->user);
 
-        $this->task2 = new Task();
-        $this->task2->setTitle("Une autre tâche");
-        $this->task2->setContent("Contenu de la tâche 2 !");
+        $task2 = new Task();
+        $task2->setTitle("Une autre tâche")
+              ->setContent("Contenu de la tâche 2 !")
+              ->setAuthor($this->user);
 
-        $this->entityManager->persist($this->task1);
-        $this->entityManager->persist($this->task2);
+        $this->entityManager->persist($task1);
+        $this->entityManager->persist($task2);
         $this->entityManager->flush();
     }
 

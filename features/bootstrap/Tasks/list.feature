@@ -29,18 +29,30 @@ Feature: As a connected user, I must be able to access the tasks list page.
     And I load a task in database
     And I connect my self with username "JohnDoe" and password "12345678"
     And I am on "/tasks"
-    And I press "Supprimer"
+    And I follow "Supprimer"
+    And I follow "Oui"
     Then I should be on "/tasks"
-    And I should see "Superbe ! La tâche a bien été supprimée."
+    And I should see "Superbe !"
     
-  Scenario: [Success] If I am connected and click on the "Marquer comme faite" button, then I should be redirected to the tasks list page.
+  Scenario: [Success] If I am connected and click on the "Effectuée" link, then I should be redirected to the tasks list page.
     Given I load a user in database
     And I load a task in database
     And I connect my self with username "JohnDoe" and password "12345678"
     And I am on "/tasks"
-    And I press "Marquer comme faite"
+    And I follow "Effectuée"
+    And I follow "Oui"
     Then I should be on "/tasks"
-    And I should see "Superbe ! La tâche Une tâche a bien été marquée comme faite."
+    And I should see "Superbe !"
+
+  Scenario: [Success] If I am connected and click on the "Non effectuée" link, then I should be redirected to the tasks list page.
+    Given I load a user in database
+    And I load a performed task in database
+    And I connect my self with username "JohnDoe" and password "12345678"
+    And I am on "/tasks"
+    And I follow "Non effectuée"
+    And I follow "Oui"
+    Then I should be on "/tasks"
+    And I should see "Superbe !"
 
   Scenario: [Success] If I am connected and click on the "Créer une tâche" link, then I should be redirected to the task creation page.
     Given I load a user in database
