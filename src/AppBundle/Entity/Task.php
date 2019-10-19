@@ -30,9 +30,9 @@ class Task
      * @Assert\NotBlank(message="Vous devez saisir un titre.")
      * @Assert\Length(
      *       min = 5,
-     *       max = 15,
-     *       minMessage = "Le titre doit être composé de 5 caractères minimum.",
-     *       maxMessage = "Le titre doit être composé de 15 caractères maximum.")
+     *       max = 50,
+     *       minMessage = "Le titre doit être composé de {{ limit }} caractères minimum.",
+     *       maxMessage = "Le titre doit être composé de {{ limit }} caractères maximum.")
      */
     private $title;
 
@@ -41,9 +41,9 @@ class Task
      * @Assert\NotBlank(message="Vous devez saisir du contenu.")
      * @Assert\Length(
      *       min = 10,
-     *       max = 100,
-     *       minMessage = "Le contenu doit être composé de 10 caractères minimum.",
-     *       maxMessage = "Le contenu doit être composé de 100 caractères maximum.")
+     *       max = 200,
+     *       minMessage = "Le contenu doit être composé de {{ limit }} caractères minimum.",
+     *       maxMessage = "Le contenu doit être composé de {{ limit }} caractères maximum.")
      */
     private $content;
 

@@ -25,14 +25,14 @@
                 </div>
                 <div>
                     <form action="{{ path('task_toggle', {'id' : task.id }) }}">
-                        <a class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#modalTaskToggle{{ task.id }}">
+                        <a class="btn btn-success btn-sm pull-right" href="#" data-toggle="modal" data-target="#modalTaskToggle{{ task.id }}">
                             {{ task.done ? 'Non effectuée' : 'Effectuée' }}
                         </a>
                         {% include 'task/modal/task_toggle.html.twig' %} 
                     </form>      
                     {% if is_granted('delete', task) %}
                         <form action="{{ path('task_delete', {'id' : task.id }) }}">
-                            <a class="btn btn-danger btn-sm pull-right" data-toggle="modal" data-target="#modalTaskDelete{{ task.id }}">Supprimer</a>
+                            <a class="btn btn-danger btn-sm pull-right" href="#" data-toggle="modal" data-target="#modalTaskDelete{{ task.id }}">Supprimer</a>
                             {% include 'task/modal/task_delete.html.twig' %}
                         </form>
                     {% endif %}

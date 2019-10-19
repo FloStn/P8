@@ -8,8 +8,8 @@ Feature: As a connected user, I must be able to access the task edit page.
     Given I load a user in database
     And I load a task in database
     And I connect my self with username "JohnDoe" and password "12345678"
-    And I am on "/tasks/100/edit"
-    Then I should be on "/"
+    And I am on "/tasks/10000/edit"
+    Then I should see "404"
 
   Scenario: [Fail] If I am connected and submit the edit form without filling in the fields, then I should stay on the edit page and I should see error messages.
     Given I load a user in database
@@ -21,8 +21,6 @@ Feature: As a connected user, I must be able to access the task edit page.
         | task_content |  |
     And I press "Modifier"
     Then I should be on "/tasks/1/edit"
-    And I should see "Vous devez saisir un titre."
-    And I should see "Vous devez saisir du contenu."
 
   Scenario: [Fail] If I am connected and submit the form without respecting the validation constraints, then I should stay on the edit page and I should see error messages.
     Given I load a user in database
@@ -37,7 +35,7 @@ Feature: As a connected user, I must be able to access the task edit page.
     And I should see "Le titre doit être composé de 5 caractères minimum."
     And I should see "Le contenu doit être composé de 10 caractères minimum."
 
-  Scenario: [Success] If I am connected and submit the edit form by filling in all the fields, then I am redirected to the task list and I should see "La tâche a bien été modifiée !".
+  Scenario: [Success] If I am connected and submit the edit form by filling in all the fields, then I am redirected to the task list and I should see "La tâche a bien été modifiée.".
     Given I load a user in database
     And I load a task in database
     And I connect my self with username "JohnDoe" and password "12345678"
@@ -47,10 +45,11 @@ Feature: As a connected user, I must be able to access the task edit page.
         | task_content | Coucou je suis le nouveau contenu d'une tâche ! |
     And I press "Modifier"
     Then I should be on "/tasks"
-    And I should see "La tâche a bien été modifiée !"
+    And I should see "La tâche a bien été modifiée."
 
   Scenario: [Success] If I am connected and click on the "Créer un utilisateur" link, then I should be redirected to the user creation page.
     Given I load a user in database
+    And I load a task in database
     And I connect my self with username "JohnDoe" and password "12345678"
     And I am on "/tasks/1/edit"
     And I follow "Créer un utilisateur"
@@ -58,6 +57,7 @@ Feature: As a connected user, I must be able to access the task edit page.
 
   Scenario: [Success] If I am connected and click on the "Se déconnecter" link, then I should be redirected to the login page.
     Given I load a user in database
+    And I load a task in database
     And I connect my self with username "JohnDoe" and password "12345678"
     And I am on "/tasks/1/edit"
     And I follow "Se déconnecter"

@@ -52,8 +52,8 @@ Feature: As a connected user, I must be able to access the task creation page.
         | task_content | Coucouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu |
     And I press "Ajouter"
     Then I should be on "/tasks/create"
-    And I should see "Le titre doit être composé de 15 caractères maximum."
-    And I should see "Le contenu doit être composé de 100 caractères maximum."
+    And I should see "Le titre doit être composé de 50 caractères maximum."
+    And I should see "Le contenu doit être composé de 200 caractères maximum."
 
   Scenario: [Success] If I am connected, then I should be able to go to the task creation page.
     Given I load a user in database
@@ -70,7 +70,7 @@ Feature: As a connected user, I must be able to access the task creation page.
         | task_content | Coucou je suis le contenu d'une tâche ! |
     And I press "Ajouter"
     Then I should be on "/tasks"
-    And I should see "Superbe ! La tâche a bien été ajoutée."
+    And I should see "Superbe !"
 
   Scenario: [Success] If I am connected and click on the "Se déconnecter" link, then I should be redirected to the login page.
     Given I load a user in database
