@@ -16,11 +16,7 @@
                     <p>{{ task.content }}</p>
                     <br>
                     <p>Créée le {{ task.createdAt|date("d/m/Y") }} par
-                    {% if task.author is not null %}
-                        {{ task.author.username }}
-                    {% else %}
-                        un utilisateur anonyme
-                    {% endif %}
+                        {{ task.author ? task.author.username : "un utilisateur anonyme" }}
                     </p>
                 </div>
                 <div>

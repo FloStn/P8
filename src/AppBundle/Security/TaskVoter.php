@@ -50,14 +50,20 @@ class TaskVoter extends Voter
 
     private function canEdit(Task $task, User $user)
     {
-        return $user === $task->getAuthor();
+        $taskAuthor = $task->getAuthor();
+        
+        if (null === $taskAuthor) {
+            return in_array("ROLE_ADMIN", $user->getRoles());
+        }
+
+        return $user === $taskAuthor;
     }
 
     private function canDelete(Task $task, User $user)
     {
         $taskAuthor = $task->getAuthor();
         
-        if ($taskAuthor == null) {
+        if (null === $taskAuthor) {
             return in_array("ROLE_ADMIN", $user->getRoles());
         }
 
