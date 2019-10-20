@@ -25,6 +25,10 @@ class TaskController extends Controller
         $repository = $entityManager->getRepository(Task::class);
         $author = $this->getUser();
         $tasks = $repository->findByAuthorField($author);
+        if (in_array("ROLE_ADMIN", $author->getRoles())) {
+            $anonyme_tasks = $repository->findByAnonyme();
+            $tasks = array_merge($tasks, $anonyme_tasks);
+        }
 
         return $this->render(
             'task/list.html.twig',
@@ -102,9 +106,10 @@ class TaskController extends Controller
         $entityManager->flush();
 
         if ($task->isDone()) {
-            $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
+            $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme étant effectuée.', $task->getTitle()));
+            return $this->redirectToRoute('task_list');
         }
-        $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme non terminée.', $task->getTitle()));
+        $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme étant non effectuée.', $task->getTitle()));
 
         return $this->redirectToRoute('task_list');
     }

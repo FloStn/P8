@@ -8,13 +8,24 @@ class TaskRepository extends EntityRepository
 {
     public function findByAuthorField($author)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.author = :author')
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.author = :author')
             ->setParameter('author', $author)
-            ->orderBy('a.id', 'ASC')
+            ->orderBy('t.createdAt', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
-            ->useResultCache(true, 10, 'tasks_all')
+            ->useResultCache(true, 3600, 'tasks_all')
+            ->getResult();
+    }
+
+    public function findByAnonyme()
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.author IS NULL')
+            ->orderBy('t.createdAt', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->useResultCache(true, 3600, 'tasks_all')
             ->getResult();
     }
 }
